@@ -13,9 +13,9 @@ def cls():
 class Blockchain:
     def __init__(self):
         self.chain = []
-        self.difficulty = 1  # Initial difficulty set to the lowest possible
-        self.block_time = 600  # Target block time in seconds (10 minutes)
-        self.adjustment_interval = 2016  # Number of blocks between difficulty adjustments
+        self.difficulty = 1  # Initial difficulty set to the lowest possible value (1). The higher the difficulty, the more time it will take to mine a block
+        self.block_time = 600  # Target block time in seconds (10 minutes) (Helps to adjust the difficulty if the block time is too high or too low)
+        self.adjustment_interval = 512  # Number of blocks between difficulty adjustments (Adjust this value to change the difficulty adjustment interval)
         self.load_chain()
 
     def create_block(self, nonce, previous_hash, owner_address):
@@ -109,11 +109,11 @@ class Blockchain:
             elif actual_time > expected_time:
                 self.difficulty -= 1
 
-# Crear blockchain
+# Creating the Blockchain
 blockchain = Blockchain()
 previous_block = blockchain.get_previous_block()
 
-# Dirección del propietario
+# Direction of the miner's wallet
 owner_address = "0xImaginateQueEstaEsTuDireccionDeWallet"
 
 cls()

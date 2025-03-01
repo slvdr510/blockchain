@@ -30,6 +30,8 @@ class Blockchain:
         self.chain.append(block)
         self.adjust_difficulty()
         self.save_chain()
+        
+
         return block
 
     def get_previous_block(self):
@@ -124,5 +126,7 @@ while True:
     nonce = blockchain.proof_of_work(previous_block['nonce'])
     block = blockchain.create_block(nonce, blockchain.hash(previous_block), owner_address)
     cls()
-    print(f"Python Blockchain Test: Running...\nMiner Address: {owner_address}\n\n" + json.dumps(block, indent=4))
+    print(f"Python Blockchain Test: Running...\nMiner Address: {owner_address}\n")
+    print(f"Nuevo bloque descubierto:\nNonce: {nonce}\nHash previo: {block['previous_hash']}\nHash del bloque: {blockchain.hash(block)}\n")
+    print(json.dumps(block, indent=4))
     previous_block = block
